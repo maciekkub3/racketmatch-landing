@@ -43,7 +43,7 @@ export function getWelcomeEmail({ city }: { city: City }): WelcomeEmailContent {
             <p style="margin:0 0 16px;color:#3a4940;font-size:16px;line-height:1.65;">Cześć — dzięki że zapisałeś się do waitlisty.</p>
             <p style="margin:0 0 16px;color:#3a4940;font-size:16px;line-height:1.65;">${launchLine}</p>
             <p style="margin:0 0 28px;color:#3a4940;font-size:16px;line-height:1.65;">W międzyczasie: jeśli masz pytanie, pomysł, albo chcesz pomóc budować społeczność — odpisz na tego maila albo napisz na <a href="mailto:hello@racketup.pl" style="color:#1C5A3A;text-decoration:underline;">hello@racketup.pl</a>.</p>
-            <p style="margin:0 0 6px;color:#0B1A10;font-size:16px;line-height:1.6;">Trzymam się,<br><strong>Maciek</strong></p>
+            <p style="margin:0 0 6px;color:#0B1A10;font-size:16px;line-height:1.6;">Trzymaj się,<br><strong>Maciek</strong></p>
             <p style="margin:0;color:#5A6E64;font-size:14px;line-height:1.6;">Maciek + Daniel · RacketUp</p>
           </td>
         </tr>
@@ -63,7 +63,7 @@ ${launchLineText}
 
 W międzyczasie: jeśli masz pytanie, pomysł, albo chcesz pomóc budować społeczność — odpisz na tego maila albo napisz na hello@racketup.pl.
 
-Trzymam się,
+Trzymaj się,
 Maciek
 
 Maciek + Daniel · RacketUp
