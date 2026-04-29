@@ -1,6 +1,7 @@
 import { MapPin, Navigation } from 'lucide-react';
+import type { City } from '@/lib/cities';
 
-export function HowItWorks() {
+export function HowItWorks({ city }: { city: City }) {
   return (
     <section id="jak-to-dziala" className="section wrap section-pad">
       <div className="outcome-summary">
@@ -94,7 +95,7 @@ export function HowItWorks() {
               <div className="after-loc">
                 <span className="after-loc-where">
                   <MapPin size={16} aria-hidden="true" />
-                  Pogoń · Kort 3
+                  {city.venueExample}
                 </span>
                 <span className="pill-nav">
                   <Navigation size={14} aria-hidden="true" />

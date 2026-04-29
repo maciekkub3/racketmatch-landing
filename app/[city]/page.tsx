@@ -25,14 +25,18 @@ export async function generateMetadata({
   const data = getCityBySlug(city);
   if (!data) return {};
 
+  const canonical = `/${data.slug}`;
+
   if (data.status === 'primary') {
     return {
       title: `Tenis i padel ${data.locative}. Znajdź swoich ludzi.`,
       description: `Apka która dobiera Ci partnera do tenisa albo padla na Twoim poziomie. ${data.name} pierwszy.`,
+      alternates: { canonical },
       openGraph: {
         title: `RacketMatch ${data.name} — tenis i padel`,
         description: `Apka która dobiera Ci partnera na Twoim poziomie. ${data.name} pierwszy.`,
         locale: 'pl_PL',
+        url: canonical,
       },
     };
   }
@@ -40,10 +44,12 @@ export async function generateMetadata({
   return {
     title: `RacketMatch ${data.name} — wkrótce`,
     description: `Czekamy aż uzbieramy 200 osób ${data.locative}. Zostaw email, powiadomimy gdy startujemy.`,
+    alternates: { canonical },
     openGraph: {
       title: `RacketMatch ${data.name} — wkrótce`,
       description: `Zostaw email, powiadomimy gdy startujemy ${data.locative}.`,
       locale: 'pl_PL',
+      url: canonical,
     },
   };
 }
@@ -57,24 +63,14 @@ export default async function CityPage({
   const data = getCityBySlug(city);
   if (!data) notFound();
 
-  const isPrimary = data.status === 'primary';
-
-  // PRIMARY city (Szczecin): full landing — all 5 sections.
-  // SECONDARY city (Wwa/Pzn/Krk): minimal funnel — Hero + Founder + FAQ.
-  // Outcome + Beginner sections skipped on secondary pages because:
-  //   - Outcome mock shows "Pogoń · Kort 3" (Szczecin club) — would mislead
-  //   - Beginner reframe is universal but adds scroll without city-specific value
   return (
     <>
       <main id="main">
         <Hero city={data} />
-
-        {isPrimary && <HowItWorks />}
-        {isPrimary && <BeginnerReframe />}
-        {isPrimary && <ProductHub />}
-
+        <HowItWorks city={data} />
+        <BeginnerReframe />
+        <ProductHub city={data} />
         <Founder />
-
         <FAQ city={data} />
       </main>
 

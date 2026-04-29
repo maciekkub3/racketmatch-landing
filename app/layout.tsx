@@ -32,6 +32,24 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
+const organizationLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'RacketMatch',
+  url: 'https://racketmatch.pl',
+  description:
+    'Apka która dobiera Ci partnera do tenisa albo padla na Twoim poziomie.',
+  founder: {
+    '@type': 'Person',
+    name: 'Maciej Kubinkiewicz',
+  },
+  sameAs: ['https://instagram.com/racketmatch'],
+  areaServed: {
+    '@type': 'Country',
+    name: 'Poland',
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -40,6 +58,10 @@ export default function RootLayout({
       <body>
         {children}
         <Analytics />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
       </body>
     </html>
   );

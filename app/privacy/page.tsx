@@ -4,6 +4,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Polityka prywatności · RacketMatch',
   description: 'Jak RacketMatch przetwarza Twoje dane osobowe.',
+  alternates: { canonical: '/privacy' },
   robots: { index: false, follow: true },
 };
 

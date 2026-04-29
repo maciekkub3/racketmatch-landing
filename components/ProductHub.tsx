@@ -1,4 +1,6 @@
-export function ProductHub() {
+import type { City } from '@/lib/cities';
+
+export function ProductHub({ city }: { city: City }) {
   return (
     <section id="hub" className="section product-hub-section">
       <div className="wrap section-pad">
@@ -54,8 +56,8 @@ export function ProductHub() {
                 <circle cx="12" cy="9" r="2.5" />
               </svg>
               <div className="hub-name">Korty</div>
-              <div className="hub-desc">Pogoń, Arkonia, Kort Centralny — dostępność i rezerwacja w jednym flow.</div>
-              <div className="hub-meta">12 obiektów · Szczecin</div>
+              <div className="hub-desc">{city.venueDesc}</div>
+              <div className="hub-meta">{city.venueMeta}</div>
             </div>
           </div>
         </div>

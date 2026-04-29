@@ -56,8 +56,25 @@ export function FAQ({ city }: { city?: City } = {}) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const faqs = getFaqs(city);
 
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  };
+
   return (
     <section id="faq" className="section faq-section">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       <div className="wrap section-pad">
         <div className="section-eyebrow">
           <span className="section-eyebrow-dot" />
