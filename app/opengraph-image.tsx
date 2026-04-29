@@ -38,10 +38,9 @@ export default async function Image() {
               height: '12px',
               borderRadius: '999px',
               background: '#C8FF5E',
-              boxShadow: '0 0 24px rgba(200, 255, 94, 0.6)',
             }}
           />
-          RacketMatch
+          <div style={{ display: 'flex' }}>RacketMatch</div>
         </div>
 
         <div
@@ -53,6 +52,7 @@ export default async function Image() {
         >
           <div
             style={{
+              display: 'flex',
               fontSize: '88px',
               fontWeight: 800,
               letterSpacing: '-2px',
@@ -61,10 +61,11 @@ export default async function Image() {
               maxWidth: '900px',
             }}
           >
-            Tenis i padel w&nbsp;Twoim mieście.
+            Tenis i padel w Twoim mieście.
           </div>
           <div
             style={{
+              display: 'flex',
               fontSize: '32px',
               color: '#8FA69A',
               maxWidth: '900px',
@@ -84,7 +85,7 @@ export default async function Image() {
             color: '#5A6E64',
           }}
         >
-          <div>racketmatch.pl</div>
+          <div style={{ display: 'flex' }}>racketmatch.pl</div>
           <div
             style={{
               display: 'flex',

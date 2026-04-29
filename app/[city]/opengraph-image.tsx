@@ -52,10 +52,9 @@ export default async function Image({
               height: '12px',
               borderRadius: '999px',
               background: '#C8FF5E',
-              boxShadow: '0 0 24px rgba(200, 255, 94, 0.6)',
             }}
           />
-          RacketMatch · {cityName}
+          <div style={{ display: 'flex' }}>RacketMatch · {cityName}</div>
         </div>
 
         <div
@@ -91,6 +90,7 @@ export default async function Image({
           </div>
           <div
             style={{
+              display: 'flex',
               fontSize: '32px',
               color: '#8FA69A',
               maxWidth: '900px',
