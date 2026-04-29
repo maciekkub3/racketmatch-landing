@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Polityka prywatności · RacketMatch',
-  description: 'Jak RacketMatch przetwarza Twoje dane osobowe.',
+  title: 'Polityka prywatności · RacketUp',
+  description: 'Jak RacketUp przetwarza Twoje dane osobowe.',
   alternates: { canonical: '/privacy' },
   robots: { index: false, follow: true },
 };
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
           <h2>1. Administrator danych</h2>
           <p>
             Administratorem Twoich danych osobowych jest <strong>Maciej Kubinkiewicz</strong>,
-            twórca RacketMatch — osoba fizyczna nieprowadząca działalności gospodarczej.
+            twórca RacketUp — osoba fizyczna nieprowadząca działalności gospodarczej.
           </p>
           <p>
             Kontakt w sprawach związanych z ochroną danych:{' '}
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
           </p>
 
           <h2>2. Jakie dane zbieramy</h2>
-          <p>Gdy zapisujesz się na waitlistę RacketMatch, zbieramy:</p>
+          <p>Gdy zapisujesz się na waitlistę RacketUp, zbieramy:</p>
           <ul>
             <li>Twój adres email</li>
             <li>Miasto, w którym wybierasz aplikację (Szczecin, Warszawa, Poznań, Kraków)</li>
@@ -49,7 +49,7 @@ export default function PrivacyPage() {
           <p>Twoje dane przetwarzamy w celu:</p>
           <ul>
             <li>
-              Poinformowania Cię, gdy aplikacja RacketMatch wystartuje w Twoim mieście
+              Poinformowania Cię, gdy aplikacja RacketUp wystartuje w Twoim mieście
             </li>
             <li>
               Lepszego dopasowania funkcji aplikacji (gdy podasz sport / poziom)
@@ -122,7 +122,7 @@ export default function PrivacyPage() {
           </p>
 
           <p className="privacy-back">
-            <Link href="/szczecin">← Wróć do RacketMatch</Link>
+            <Link href="/szczecin">← Wróć do RacketUp</Link>
           </p>
         </article>
       </div>

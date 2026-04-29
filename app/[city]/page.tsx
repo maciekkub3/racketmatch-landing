@@ -33,7 +33,7 @@ export async function generateMetadata({
       description: `Apka która dobiera Ci partnera do tenisa albo padla na Twoim poziomie. ${data.name} pierwszy.`,
       alternates: { canonical },
       openGraph: {
-        title: `RacketMatch ${data.name} — tenis i padel`,
+        title: `RacketUp ${data.name} — tenis i padel`,
         description: `Apka która dobiera Ci partnera na Twoim poziomie. ${data.name} pierwszy.`,
         locale: 'pl_PL',
         url: canonical,
@@ -42,11 +42,11 @@ export async function generateMetadata({
   }
 
   return {
-    title: `RacketMatch ${data.name} — wkrótce`,
+    title: `RacketUp ${data.name} — wkrótce`,
     description: `Czekamy aż uzbieramy 200 osób ${data.locative}. Zostaw email, powiadomimy gdy startujemy.`,
     alternates: { canonical },
     openGraph: {
-      title: `RacketMatch ${data.name} — wkrótce`,
+      title: `RacketUp ${data.name} — wkrótce`,
       description: `Zostaw email, powiadomimy gdy startujemy ${data.locative}.`,
       locale: 'pl_PL',
       url: canonical,

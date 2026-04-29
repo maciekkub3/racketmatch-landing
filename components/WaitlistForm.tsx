@@ -234,7 +234,7 @@ export function WaitlistForm({ city }: WaitlistFormProps) {
       </div>
 
       <p className="form-consent-text">
-        Klikając „Dołącz" zgadzasz się na kontakt mailowy w sprawie launch&apos;a RacketMatch. Szczegóły:{' '}
+        Klikając „Dołącz" zgadzasz się na kontakt mailowy w sprawie launch&apos;a RacketUp. Szczegóły:{' '}
         <a href="/privacy" target="_blank" rel="noopener">polityka prywatności</a>.
       </p>
     </form>

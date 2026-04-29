@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { getCityBySlug } from '@/lib/cities';
 
-export const alt = 'RacketMatch — tenis i padel';
+export const alt = 'RacketUp — tenis i padel';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -44,7 +44,7 @@ export default async function Image({
             }}
           />
           <div style={{ display: 'flex', fontSize: '22px', color: '#8FA69A', letterSpacing: '4px' }}>
-            RACKETMATCH · {cityName.toUpperCase()}
+            RACKETUP · {cityName.toUpperCase()}
           </div>
         </div>
 
@@ -93,7 +93,7 @@ export default async function Image({
             color: '#5A6E64',
           }}
         >
-          <div style={{ display: 'flex' }}>racketmatch.pl/{slug}</div>
+          <div style={{ display: 'flex' }}>racketup.pl/{slug}</div>
           <div
             style={{
               display: 'flex',

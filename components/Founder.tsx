@@ -42,7 +42,7 @@ export function Founder() {
               <p className="founder-ps">
                 <span className="founder-ps-label">PS</span>
                 żyjesz tenisem albo padlem? Buduj z nami szczecińską społeczność — zero umów i „stanowisk", wspólna sprawa:{' '}
-                <a href="mailto:hello@racketmatch.pl" className="founder-link">hello@racketmatch.pl</a>
+                <a href="mailto:hello@racketup.pl" className="founder-link">hello@racketup.pl</a>
               </p>
 
               <div className="founder-cta">

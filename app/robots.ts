@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://racketmatch.pl';
+const BASE_URL = 'https://racketup.pl';
 
 export default function robots(): MetadataRoute.Robots {
   return {

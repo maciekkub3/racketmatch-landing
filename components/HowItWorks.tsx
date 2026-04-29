@@ -16,7 +16,7 @@ export function HowItWorks({ city }: { city: City }) {
       <div className="compare-grid">
         <div className="compare-col is-before">
           <div className="compare-head">
-            <span className="compare-label">Bez RacketMatch</span>
+            <span className="compare-label">Bez RacketUp</span>
             <span className="compare-when">Czw · 22:47</span>
           </div>
           <div className="compare-col-body">
@@ -74,7 +74,7 @@ export function HowItWorks({ city }: { city: City }) {
             </svg>
           </div>
           <div className="compare-head">
-            <span className="compare-label">Z RacketMatch</span>
+            <span className="compare-label">Z RacketUp</span>
             <span className="compare-when">Pt · 19:00 · dziś</span>
           </div>
           <div className="compare-col-body">

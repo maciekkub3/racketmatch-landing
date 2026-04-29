@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="footer">
       <div className="wrap section-pad footer-inner">
         <div className="footer-brand">
-          <span className="footer-logo">RacketMatch</span>
+          <span className="footer-logo">RacketUp</span>
           <span className="footer-meta">Made in Szczecin · 2026</span>
           <div className="footer-legal">
             <Link href="/privacy">Polityka prywatności</Link>
@@ -40,11 +40,11 @@ export function Footer() {
         </div>
 
         <div className="footer-social">
-          <a href="https://instagram.com/racketmatch" target="_blank" rel="noopener noreferrer" className="footer-link">
-            @racketmatch
+          <a href="https://instagram.com/racketup" target="_blank" rel="noopener noreferrer" className="footer-link">
+            @racketup
           </a>
-          <a href="mailto:hello@racketmatch.pl" className="footer-link">
-            hello@racketmatch.pl
+          <a href="mailto:hello@racketup.pl" className="footer-link">
+            hello@racketup.pl
           </a>
         </div>
       </div>

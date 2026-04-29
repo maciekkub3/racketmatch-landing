@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { cities } from '@/lib/cities';
 
-const BASE_URL = 'https://racketmatch.pl';
+const BASE_URL = 'https://racketup.pl';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

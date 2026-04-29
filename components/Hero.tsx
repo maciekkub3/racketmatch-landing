@@ -23,7 +23,7 @@ export function Hero({ city }: HeroProps) {
                 <path d="M12 5 L9 13" strokeWidth="0.8" />
               </svg>
             </span>
-            RacketMatch
+            RacketUp
           </a>
           <span className="hero-city-tag">· {city.name}</span>
         </div>
@@ -64,7 +64,7 @@ export function Hero({ city }: HeroProps) {
             </>
           ) : (
             <>
-              RacketMatch {city.name} —
+              RacketUp {city.name} —
               <br />
               wkrótce.
             </>
@@ -73,7 +73,7 @@ export function Hero({ city }: HeroProps) {
 
         <p className="hero-sub">
           {isPrimary
-            ? 'Wiemy jak to jest. Wynająłeś kort, partner odwołał. Znajomi za słabi albo za mocni. RacketMatch łączy partnerów na poziomie, trenerów w okolicy i korty — w jednej apce. Zaczynamy w Szczecinie, pierwsza setka rusza wcześniej.'
+            ? 'Wiemy jak to jest. Wynająłeś kort, partner odwołał. Znajomi za słabi albo za mocni. RacketUp łączy partnerów na poziomie, trenerów w okolicy i korty — w jednej apce. Zaczynamy w Szczecinie, pierwsza setka rusza wcześniej.'
             : `Też zbieramy waitlistę ${city.locative}. Po Szczecinie ruszamy dalej — zostaw email, powiadomimy Cię gdy będzie wasza kolej.`}
         </p>
 

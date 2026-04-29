@@ -10,17 +10,17 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://racketmatch.pl'),
+  metadataBase: new URL('https://racketup.pl'),
   title: {
-    default: 'RacketMatch — tenis i padel w Twoim mieście',
-    template: '%s · RacketMatch',
+    default: 'RacketUp — tenis i padel w Twoim mieście',
+    template: '%s · RacketUp',
   },
   description:
     'Apka która dobiera Ci partnera do tenisa albo padla na Twoim poziomie. Najpierw Szczecin, potem reszta Polski.',
   openGraph: {
     type: 'website',
     locale: 'pl_PL',
-    siteName: 'RacketMatch',
+    siteName: 'RacketUp',
   },
   robots: { index: true, follow: true },
 };
@@ -35,15 +35,15 @@ export const viewport: Viewport = {
 const organizationLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'RacketMatch',
-  url: 'https://racketmatch.pl',
+  name: 'RacketUp',
+  url: 'https://racketup.pl',
   description:
     'Apka która dobiera Ci partnera do tenisa albo padla na Twoim poziomie.',
   founder: {
     '@type': 'Person',
     name: 'Maciej Kubinkiewicz',
   },
-  sameAs: ['https://instagram.com/racketmatch'],
+  sameAs: ['https://instagram.com/racketup'],
   areaServed: {
     '@type': 'Country',
     name: 'Poland',
