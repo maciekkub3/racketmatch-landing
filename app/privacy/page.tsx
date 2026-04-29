@@ -18,7 +18,7 @@ export default function PrivacyPage() {
           </p>
 
           <h1 className="privacy-title">Polityka prywatności</h1>
-          <p className="privacy-meta">Ostatnia aktualizacja: 29 kwietnia 2026</p>
+          <p className="privacy-meta">Ostatnia aktualizacja: 30 kwietnia 2026</p>
 
           <h2>1. Administrator danych</h2>
           <p>
@@ -27,7 +27,7 @@ export default function PrivacyPage() {
           </p>
           <p>
             Kontakt w sprawach związanych z ochroną danych:{' '}
-            <a href="mailto:maciek.k2001@gmail.com">maciek.k2001@gmail.com</a>
+            <a href="mailto:kontakt@racketup.pl">kontakt@racketup.pl</a>
           </p>
 
           <h2>2. Jakie dane zbieramy</h2>
@@ -103,7 +103,7 @@ export default function PrivacyPage() {
           </ul>
           <p>
             Aby skorzystać z któregokolwiek z tych praw, napisz na{' '}
-            <a href="mailto:maciek.k2001@gmail.com">maciek.k2001@gmail.com</a>.
+            <a href="mailto:kontakt@racketup.pl">kontakt@racketup.pl</a>.
             Odpowiadamy w ciągu 30 dni.
           </p>
 
