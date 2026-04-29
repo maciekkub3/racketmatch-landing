@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'RacketMatch — tenis i padel w Twoim mieście';
+export const alt = 'RacketMatch — tenis i padel';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -15,23 +15,12 @@ export default async function Image() {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '72px',
-          background:
-            'linear-gradient(135deg, #0A120E 0%, #121C17 50%, #1A2620 100%)',
+          background: '#0A120E',
           color: '#E8F0EA',
-          fontFamily: 'system-ui, sans-serif',
+          fontFamily: 'sans-serif',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '14px',
-            fontSize: '20px',
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            color: '#8FA69A',
-          }}
-        >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
           <div
             style={{
               width: '12px',
@@ -40,36 +29,41 @@ export default async function Image() {
               background: '#C8FF5E',
             }}
           />
-          <div style={{ display: 'flex' }}>RacketMatch</div>
+          <div style={{ display: 'flex', fontSize: '22px', color: '#8FA69A', letterSpacing: '4px' }}>
+            RACKETMATCH
+          </div>
         </div>
 
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '20px',
-          }}
-        >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
           <div
             style={{
               display: 'flex',
               fontSize: '88px',
               fontWeight: 800,
-              letterSpacing: '-2px',
               lineHeight: 1.04,
               color: '#E8F0EA',
-              maxWidth: '900px',
             }}
           >
-            Tenis i padel w Twoim mieście.
+            Tenis i padel
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              fontSize: '88px',
+              fontWeight: 800,
+              lineHeight: 1.04,
+              color: '#C8FF5E',
+            }}
+          >
+            w Twoim mieście.
           </div>
           <div
             style={{
               display: 'flex',
               fontSize: '32px',
               color: '#8FA69A',
-              maxWidth: '900px',
               lineHeight: 1.3,
+              marginTop: '8px',
             }}
           >
             Apka która dobiera Ci partnera na Twoim poziomie.
@@ -90,12 +84,11 @@ export default async function Image() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              padding: '12px 24px',
+              padding: '14px 26px',
               borderRadius: '999px',
               background: '#C8FF5E',
               color: '#0B1A10',
-              fontSize: '22px',
+              fontSize: '24px',
               fontWeight: 700,
             }}
           >
