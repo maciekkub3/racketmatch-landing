@@ -1,6 +1,9 @@
 import type { NextRequest } from 'next/server';
 import { z } from 'zod';
+import { Resend } from 'resend';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { getCityBySlug } from '@/lib/cities';
+import { getWelcomeEmail } from '@/lib/emails/welcome';
 
 const schema = z.object({
   email: z.email().max(254),
@@ -9,6 +12,33 @@ const schema = z.object({
   level: z.enum(['poczatkujacy', 'sredni', 'zaawansowany']).optional(),
   _honey: z.string().optional(),
 });
+
+async function sendWelcome(email: string, citySlug: string): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.warn('[waitlist] RESEND_API_KEY missing — skipping welcome email');
+    return;
+  }
+
+  const city = getCityBySlug(citySlug);
+  if (!city) return;
+
+  const { subject, html, text } = getWelcomeEmail({ city });
+  const resend = new Resend(apiKey);
+
+  try {
+    await resend.emails.send({
+      from: 'Maciek z RacketUp <hello@racketup.pl>',
+      to: email,
+      replyTo: 'hello@racketup.pl',
+      subject,
+      html,
+      text,
+    });
+  } catch (err) {
+    console.error('[waitlist] welcome email failed', err);
+  }
+}
 
 export async function POST(req: NextRequest) {
   let body: unknown;
@@ -32,6 +62,13 @@ export async function POST(req: NextRequest) {
   const normalizedEmail = email.toLowerCase().trim();
   const supabase = getSupabaseAdmin();
 
+  const { data: existing } = await supabase
+    .from('waitlist')
+    .select('email')
+    .eq('email', normalizedEmail)
+    .maybeSingle();
+
+  const isFirstSignup = !existing;
   const isComplete = Boolean(sport && level);
 
   const { error } = isComplete
@@ -51,6 +88,10 @@ export async function POST(req: NextRequest) {
   if (error) {
     console.error('[waitlist] supabase error', { code: error.code, message: error.message });
     return Response.json({ error: 'server_error' }, { status: 500 });
+  }
+
+  if (isFirstSignup) {
+    await sendWelcome(normalizedEmail, city);
   }
 
   return Response.json({ ok: true }, { status: 200 });
