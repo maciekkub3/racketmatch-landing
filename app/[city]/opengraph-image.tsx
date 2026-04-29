@@ -67,16 +67,27 @@ export default async function Image({
         >
           <div
             style={{
+              display: 'flex',
               fontSize: '92px',
               fontWeight: 800,
               letterSpacing: '-2px',
               lineHeight: 1.04,
               color: '#E8F0EA',
-              maxWidth: '1000px',
             }}
           >
-            Tenis i padel{' '}
-            <span style={{ color: '#C8FF5E' }}>{city?.locative ?? 'w Twoim mieście'}</span>.
+            Tenis i padel
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              fontSize: '92px',
+              fontWeight: 800,
+              letterSpacing: '-2px',
+              lineHeight: 1.04,
+              color: '#C8FF5E',
+            }}
+          >
+            {city?.locative ?? 'w Twoim mieście'}.
           </div>
           <div
             style={{
