@@ -1,128 +1,110 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Plus } from 'lucide-react';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { ChevronDown } from 'lucide-react';
+import type { City } from '@/lib/cities';
 
-const faqs = [
-  {
-    q: 'Nigdy nie grałem w tenisa/padla. Czy to dla mnie?',
-    a: 'Tak. Większość osób na waitliście to gracze rekreacyjni albo zaczynający. System dopasowuje Cię do osób na Twoim poziomie — nie zagrasz z kimś kto Cię rozbije 6:0.',
-  },
-  {
-    q: 'Kiedy apka będzie dostępna w moim mieście?',
-    a: 'Odpalamy miasto gdy zbierze 200 zapisów. Szczecin już działa. Sprawdź mapę lub wpisz swoje miasto — zobaczysz ile brakuje.',
-  },
-  {
-    q: 'Ile kosztuje?',
-    a: 'Podstawowe granie za darmo. Premium i turnieje Masters w przyszłości.',
-  },
-  {
-    q: 'Skąd system wie jaki mam poziom?',
-    a: 'Krótki wywiad po rejestracji ustala Twój początkowy ranking ELO. Nie dostajesz domyślnych punktów — ustalamy indywidualnie.',
-  },
-  {
-    q: 'Kim są Masters?',
-    a: 'Top 5% graczy w Twoim mieście i sporcie. Minimum 20 meczów rankingowych.',
-  },
-  {
-    q: 'Czy muszę mieć rakietę i dostęp do kortu?',
-    a: 'Nie. Lokalne kluby w apce pokazują korty, wypożyczalnie i pierwsze lekcje z trenerami.',
-  },
-  {
-    q: 'Czy aplikacja jest na iOS i Android?',
-    a: 'Tak, obie platformy.',
-  },
-];
+function getFaqs(city?: City): { num: string; cat: string; q: string; a: string }[] {
+  const isPrimary = !city || city.status === 'primary';
+  const cityLocative = city?.locative ?? 'w Szczecinie';
 
-function FAQItem({ item, isOpen, onToggle }: {
-  item: typeof faqs[0];
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
-  return (
-    <motion.div
-      initial={false}
-      className="border border-white/7 rounded-2xl overflow-hidden"
-      animate={{
-        borderColor: isOpen ? 'rgba(16,185,129,0.2)' : 'rgba(255,255,255,0.07)',
-      }}
-      transition={{ duration: 0.2 }}
-    >
-      <button
-        onClick={onToggle}
-        className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left cursor-pointer"
-      >
-        <span className="text-sm font-medium text-white/85 leading-snug">{item.q}</span>
-        <motion.div
-          animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-          className="flex-shrink-0 w-6 h-6 rounded-full border border-white/12 flex items-center justify-center text-white/50"
-        >
-          <Plus className="w-3.5 h-3.5" />
-        </motion.div>
-      </button>
+  const launchAnswer = isPrimary
+    ? 'Gdy uzbieramy 200 zapisanych. Im szybciej tym szybciej — zostaw email, powiadomimy Cię osobiście.'
+    : `Po Szczecinie (tam lecimy pierwsi). Kolejka ${cityLocative} rusza gdy uzbieramy 200 osób z tego miasta — dlatego zostaw email, każdy zapis przyspiesza launch.`;
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="content"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="px-5 pb-4 text-sm text-white/50 leading-relaxed border-t border-white/6 pt-3">
-              {item.a}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
+  return [
+    {
+      num: '01',
+      cat: 'Apka',
+      q: 'Co znajdę w apce?',
+      a: 'Trzy rzeczy: partnerów na Twoim poziomie (matchmaking po ELO i grafiku), profile trenerów w okolicy (z umawianiem lekcji) i korty w klubach które integrujemy. Wszystko w jednym miejscu — żebyś nie pingpongował między pięcioma apkami.',
+    },
+    {
+      num: '02',
+      cat: 'Cena',
+      q: 'Czy to będzie płatne?',
+      a: 'Tak. Apka kosztuje 10 zł miesięcznie. Pierwsza setka z waitlisty dostaje 3 miesiące za darmo.',
+    },
+    {
+      num: '03',
+      cat: 'Termin',
+      q: `Kiedy ruszamy ${cityLocative}?`,
+      a: launchAnswer,
+    },
+    {
+      num: '04',
+      cat: 'Ranking',
+      q: 'Czy padel ma osobne ELO?',
+      a: 'Tak. Ranking liczony osobno per sport. Możesz mieć inny poziom w tenisie i w padlu — apka traktuje to jako dwa różne sporty.',
+    },
+    {
+      num: '05',
+      cat: 'Sport',
+      q: 'Mam tylko padel albo tylko tenis — OK?',
+      a: 'Jasne. Wybierasz jeden sport przy zapisie. Drugi możesz dodać w apce w każdej chwili.',
+    },
+    {
+      num: '06',
+      cat: 'Korzyści',
+      q: 'Co dostaję za zapis?',
+      a: '3 miesiące za darmo + wcześniejszy dostęp przed publicznym launchem. Jeśli chcesz pomagać budować społeczność, nie tylko grać — napisz do nas (info wyżej, w sekcji Daniel + Maciek).',
+    },
+  ];
 }
 
-export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.15 });
+export function FAQ({ city }: { city?: City } = {}) {
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const faqs = getFaqs(city);
 
   return (
-    <section ref={ref} className="relative py-24 section-pad">
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+    <section id="faq" className="section faq-section">
+      <div className="wrap section-pad">
+        <div className="section-eyebrow">
+          <span className="section-eyebrow-dot" />
+          FAQ
+        </div>
 
-      <div className="max-w-2xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <p className="text-xs font-semibold tracking-widest text-emerald-400 uppercase mb-3">
-            FAQ
-          </p>
-          <h2 className="text-[clamp(1.6rem,4vw,2.4rem)] font-extrabold tracking-tight text-white">
-            Masz pytania?
-          </h2>
-        </motion.div>
+        <h2 className="faq-title">Krótkie odpowiedzi na zwykłe pytania.</h2>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="flex flex-col gap-3"
-        >
-          {faqs.map((faq, i) => (
-            <FAQItem
-              key={i}
-              item={faq}
-              isOpen={openIndex === i}
-              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-            />
-          ))}
-        </motion.div>
+        <div className="faq-grid">
+          {faqs.map((item, i) => {
+            const isOpen = openIdx === i;
+            return (
+              <div key={i} className={`faq-cell${isOpen ? ' is-open' : ''}`}>
+                <button
+                  type="button"
+                  className="faq-q-row"
+                  onClick={() => setOpenIdx(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-content-${i}`}
+                >
+                  <span className="faq-q-stack">
+                    <span className="faq-num">{item.num} · {item.cat}</span>
+                    <span className="faq-q-text">{item.q}</span>
+                  </span>
+                  <span className="faq-chev" aria-hidden="true">
+                    <ChevronDown size={14} />
+                  </span>
+                </button>
+                <div
+                  id={`faq-content-${i}`}
+                  className="faq-a-wrap"
+                  aria-hidden={!isOpen}
+                >
+                  <div>
+                    <p className="faq-a-text">{item.a}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="faq-cta">
+          <a href="#hero" className="btn-lime btn-lime-lg">
+            Zarezerwuj swoje miejsce →
+          </a>
+        </div>
       </div>
     </section>
   );

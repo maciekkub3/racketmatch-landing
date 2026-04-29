@@ -1,141 +1,115 @@
-'use client';
+import { MapPin, Navigation } from 'lucide-react';
 
-import { motion, useInView, useMotionValue, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import { UserPlus, Timer, Swords } from 'lucide-react';
-
-const steps = [
-  {
-    icon: UserPlus,
-    step: '01',
-    title: 'Zapisz się',
-    body: 'Podaj email, wybierz miasto i sport. Zajmuje 30 sekund.',
-    color: 'from-emerald-500/10 to-emerald-500/0',
-    glow: 'rgba(16,185,129,0.15)',
-  },
-  {
-    icon: Timer,
-    step: '02',
-    title: 'Czekaj na próg',
-    body: 'Gdy miasto zbierze 200 zapisów, odpalamy aplikację. Śledzimy postęp razem.',
-    color: 'from-amber-500/10 to-amber-500/0',
-    glow: 'rgba(245,158,11,0.12)',
-  },
-  {
-    icon: Swords,
-    step: '03',
-    title: 'Graj!',
-    body: 'Dostajesz dostęp, ustalamy poziom, system dobiera Ci partnerów. Czas na kort.',
-    color: 'from-lime-500/10 to-lime-500/0',
-    glow: 'rgba(132,204,22,0.12)',
-  },
-];
-
-function TiltCard({ children, glow }: { children: React.ReactNode; glow: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-0.5, 0.5], [6, -6]);
-  const rotateY = useTransform(x, [-0.5, 0.5], [-6, 6]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-  const handleMouseLeave = () => { x.set(0); y.set(0); };
-
+export function HowItWorks() {
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, transformPerspective: 600 }}
-      transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-      className="h-full"
-      whileHover={{ boxShadow: `0 0 40px ${glow}` }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+    <section id="jak-to-dziala" className="section wrap section-pad">
+      <div className="outcome-summary">
+        <div className="section-eyebrow">
+          <span className="section-eyebrow-dot" />
+          Outcome
+        </div>
+        <h2 className="outcome-title">Nie szukasz partnera. Dostajesz.</h2>
+        <p className="outcome-sub">To samo zgłoszenie. Inny rezultat.</p>
+      </div>
 
-export default function HowItWorks() {
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
+      <div className="compare-grid">
+        <div className="compare-col is-before">
+          <div className="compare-head">
+            <span className="compare-label">Bez RacketMatch</span>
+            <span className="compare-when">Czw · 22:47</span>
+          </div>
+          <div className="compare-col-body">
+            <div className="before-thread">
+              <div className="thread-row">
+                <span className="thread-time">22:47</span>
+                <div className="thread-msg">
+                  <span className="who">Daniel</span>Ktoś zagra jutro 18–20? Średnio-zaawansowany.
+                </div>
+              </div>
+              <div className="thread-row dim">
+                <span className="thread-time">23:14</span>
+                <div className="thread-msg">
+                  <span className="who">Daniel</span>?
+                </div>
+              </div>
+              <div className="thread-row dim">
+                <span className="thread-time">07:02</span>
+                <div className="thread-msg">
+                  <span className="who">Daniel</span>Kort zarezerwowany, jest 1 miejsce.
+                </div>
+              </div>
+              <div className="thread-row ghost">
+                <span className="thread-time">17:38</span>
+                <div className="thread-msg thread-strike">
+                  <span className="who">Daniel</span>okej odwołuję
+                </div>
+              </div>
+            </div>
+            <div className="thread-result">
+              <span className="x" aria-hidden="true">×</span>
+              <span>0 odpowiedzi · 19 godzin · 80 zł za odwołany kort</span>
+            </div>
+          </div>
+        </div>
 
-  return (
-    <section ref={ref} className="relative py-24 section-pad">
-      {/* Section divider */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
-
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
-        >
-          <p className="text-xs font-semibold tracking-widest text-emerald-400 uppercase mb-3">
-            Jak to działa
-          </p>
-          <h2 className="text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold tracking-tight text-white">
-            Trzy kroki do pierwszego meczu
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {steps.map((step, i) => {
-            const Icon = step.icon;
-            return (
-              <motion.div
-                key={step.step}
-                initial={{ opacity: 0, y: 28 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="h-full"
-              >
-                <TiltCard glow={step.glow}>
-                  <div
-                    className={`h-full glass-card rounded-2xl p-6 bg-gradient-to-b ${step.color} relative overflow-hidden`}
-                  >
-                    {/* Step number watermark */}
-                    <span className="absolute top-4 right-5 text-6xl font-black text-white/4 select-none">
-                      {step.step}
-                    </span>
-
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center mb-4">
-                      <Icon className="w-5 h-5 text-white/70" strokeWidth={1.8} />
-                    </div>
-
-                    <h3 className="text-base font-semibold text-white mb-2">{step.title}</h3>
-                    <p className="text-sm text-white/50 leading-relaxed">{step.body}</p>
-
-                    {/* Mini animated progress bar for step 2 */}
-                    {i === 1 && (
-                      <div className="mt-5">
-                        <div className="flex justify-between text-xs text-white/35 mb-1">
-                          <span>Warszawa</span>
-                          <span>147/200</span>
-                        </div>
-                        <div className="h-1 bg-white/8 rounded-full overflow-hidden">
-                          <motion.div
-                            className="h-full rounded-full bg-amber-400"
-                            initial={{ width: 0 }}
-                            animate={inView ? { width: '73.5%' } : {}}
-                            transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                          />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </TiltCard>
-              </motion.div>
-            );
-          })}
+        <div className="compare-col is-after">
+          <div className="after-court" aria-hidden="true">
+            <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet" fill="none">
+              <rect className="court-line" x="100" y="80" width="1000" height="440" />
+              <line className="court-line thin" x1="160" y1="80" x2="160" y2="520" />
+              <line className="court-line thin" x1="1040" y1="80" x2="1040" y2="520" />
+              <line className="court-line" x1="160" y1="200" x2="1040" y2="200" />
+              <line className="court-line" x1="160" y1="400" x2="1040" y2="400" />
+              <line className="court-line" x1="600" y1="200" x2="600" y2="400" />
+              <line className="court-net" x1="80" y1="300" x2="1120" y2="300" />
+              <g>
+                {Array.from({ length: 26 }).map((_, i) => {
+                  const x = 100 + i * 40;
+                  return <line key={i} className="net-mesh" x1={x} y1="290" x2={x} y2="300" />;
+                })}
+              </g>
+              <line className="court-net" x1="80" y1="270" x2="80" y2="300" />
+              <line className="court-net" x1="1120" y1="270" x2="1120" y2="300" />
+            </svg>
+          </div>
+          <div className="compare-head">
+            <span className="compare-label">Z RacketMatch</span>
+            <span className="compare-when">Pt · 19:00 · dziś</span>
+          </div>
+          <div className="compare-col-body">
+            <div className="after-stage">
+              <div className="after-time">19:00</div>
+              <div className="after-vs">
+                <div className="cmp-avatar-stack">
+                  <div className="cmp-avatar cmp-avatar-lime">KN</div>
+                  <span className="cmp-avatar-tag">Ty</span>
+                </div>
+                <span className="vs-label">vs</span>
+                <div className="cmp-avatar cmp-avatar-ghost">MZ</div>
+                <div className="vs-info">
+                  <div className="vs-name">Mateusz Zieliński</div>
+                  <div className="vs-meta">ELO 1820 · H2H 3–1</div>
+                </div>
+              </div>
+              <div className="after-loc">
+                <span className="after-loc-where">
+                  <MapPin size={16} aria-hidden="true" />
+                  Pogoń · Kort 3
+                </span>
+                <span className="pill-nav">
+                  <Navigation size={14} aria-hidden="true" />
+                  Nawiguj
+                </span>
+              </div>
+            </div>
+            <div className="after-result">
+              <span className="check" aria-hidden="true">✓</span>
+              <span>Dobrane w 4 min · partner potwierdził · mecz się odbywa</span>
+            </div>
+          </div>
         </div>
       </div>
+
     </section>
   );
 }
