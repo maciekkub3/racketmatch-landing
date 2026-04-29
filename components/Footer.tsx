@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { cities } from '@/lib/cities';
 
 export function Footer() {
@@ -7,6 +8,9 @@ export function Footer() {
         <div className="footer-brand">
           <span className="footer-logo">RacketMatch</span>
           <span className="footer-meta">Made in Szczecin · 2026</span>
+          <div className="footer-legal">
+            <Link href="/privacy">Polityka prywatności</Link>
+          </div>
         </div>
 
         <div className="footer-cities" aria-label="Miasta">

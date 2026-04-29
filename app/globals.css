@@ -2004,6 +2004,149 @@ button { font-family: inherit; }
   flex-shrink: 0;
 }
 
+/* ───────────── Privacy / legal pages ───────────── */
+
+.privacy-page {
+  background: var(--surface-low);
+  min-height: 100vh;
+  padding-top: clamp(40px, 6vh, 80px);
+  padding-bottom: clamp(60px, 10vh, 120px);
+}
+
+.privacy-content {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--ink2);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.privacy-back-top {
+  margin: 0 0 32px;
+  font-size: 14px;
+}
+
+.privacy-back-top a {
+  color: var(--ink2);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.privacy-back-top a:hover {
+  color: var(--lime);
+}
+
+.privacy-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+
+.privacy-meta {
+  font-size: 13px;
+  color: var(--ink3);
+  margin: 0 0 40px;
+  font-variant-numeric: tabular-nums;
+}
+
+.privacy-content h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+  margin: 40px 0 12px;
+}
+
+.privacy-content p {
+  margin: 0 0 16px;
+}
+
+.privacy-content ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+
+.privacy-content li {
+  margin: 0 0 6px;
+}
+
+.privacy-content strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.privacy-content a {
+  color: var(--lime);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: opacity 180ms ease;
+}
+
+.privacy-content a:hover {
+  opacity: 0.8;
+}
+
+.privacy-back {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--stroke);
+  font-size: 14px;
+}
+
+.privacy-back a {
+  color: var(--ink2);
+  text-decoration: none;
+}
+
+.privacy-back a:hover {
+  color: var(--lime);
+}
+
+/* ───────────── Form consent microcopy ───────────── */
+
+.form-consent-text {
+  margin: 10px 0 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink3);
+  letter-spacing: 0.01em;
+}
+
+.form-consent-text a {
+  color: var(--ink2);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: color 180ms ease;
+}
+
+.form-consent-text a:hover {
+  color: var(--lime);
+}
+
+/* ───────────── Footer privacy link ───────────── */
+
+.footer-legal {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-legal a {
+  font-size: 13px;
+  color: var(--ink3);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.footer-legal a:hover {
+  color: var(--ink2);
+}
+
 /* ───────────── Reduce motion — respect user pref ───────────── */
 
 @media (prefers-reduced-motion: reduce) {

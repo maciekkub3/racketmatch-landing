@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { City } from '@/lib/cities';
 
-type Step1Data = { email: string };
+type Step1Data = { email: string; _honey?: string };
 type Step2Data = { sport: 'tenis' | 'padel' | 'oba'; poziom: 'poczatkujacy' | 'sredni' | 'zaawansowany' };
 
 const SPORT_LABEL: Record<Step2Data['sport'], string> = {
@@ -18,6 +18,34 @@ const POZIOM_LABEL: Record<Step2Data['poziom'], string> = {
   zaawansowany: 'Zaawansowany',
 };
 
+const HONEYPOT_STYLE: React.CSSProperties = {
+  position: 'absolute',
+  left: '-9999px',
+  width: '1px',
+  height: '1px',
+  opacity: 0,
+  pointerEvents: 'none',
+};
+
+async function postWaitlist(payload: {
+  email: string;
+  city: string;
+  sport?: string;
+  level?: string;
+  _honey?: string;
+}): Promise<{ ok: boolean }> {
+  try {
+    const res = await fetch('/api/waitlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return { ok: res.ok };
+  } catch {
+    return { ok: false };
+  }
+}
+
 interface WaitlistFormProps {
   city: City;
 }
@@ -25,9 +53,10 @@ interface WaitlistFormProps {
 export function WaitlistForm({ city }: WaitlistFormProps) {
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [email, setEmail] = useState('');
+  const [apiError, setApiError] = useState<string | null>(null);
   const successRef = useRef<HTMLDivElement>(null);
 
-  const step1 = useForm<Step1Data>({ defaultValues: { email: '' }, mode: 'onSubmit' });
+  const step1 = useForm<Step1Data>({ defaultValues: { email: '', _honey: '' }, mode: 'onSubmit' });
   const step2 = useForm<Step2Data>({ mode: 'onSubmit' });
 
   const fireConfetti = async () => {
@@ -46,21 +75,37 @@ export function WaitlistForm({ city }: WaitlistFormProps) {
   };
 
   const onStep1Submit = async (data: Step1Data) => {
-    console.log('[waitlist] step 1', { city: city.slug, email: data.email });
-    await new Promise((r) => setTimeout(r, 600));
+    setApiError(null);
+    const result = await postWaitlist({
+      email: data.email,
+      city: city.slug,
+      _honey: data._honey,
+    });
+    if (!result.ok) {
+      setApiError('Coś poszło nie tak. Spróbuj jeszcze raz.');
+      return;
+    }
     setEmail(data.email);
     setStep(2);
   };
 
   const onStep2Submit = async (data: Step2Data) => {
-    console.log('[waitlist] step 2', { city: city.slug, email, ...data });
-    await new Promise((r) => setTimeout(r, 600));
+    setApiError(null);
+    const result = await postWaitlist({
+      email,
+      city: city.slug,
+      sport: data.sport,
+      level: data.poziom,
+    });
+    if (!result.ok) {
+      setApiError('Coś poszło nie tak. Spróbuj jeszcze raz.');
+      return;
+    }
     setStep(3);
     fireConfetti();
   };
 
   const onStep2Skip = () => {
-    console.log('[waitlist] step 2 skipped', { city: city.slug, email });
     setStep(3);
     fireConfetti();
   };
@@ -117,6 +162,8 @@ export function WaitlistForm({ city }: WaitlistFormProps) {
             {poziomError && <p className="form-error" role="alert">Wybierz poziom</p>}
           </fieldset>
 
+          {apiError && <p className="form-error" role="alert">{apiError}</p>}
+
           <div className="form-actions">
             <button type="submit" className="btn-lime" disabled={submitting}>
               {submitting ? 'Zapisywanie…' : 'Gotowe →'}
@@ -136,6 +183,15 @@ export function WaitlistForm({ city }: WaitlistFormProps) {
 
   return (
     <form onSubmit={step1.handleSubmit(onStep1Submit)} className="hero-form" noValidate>
+      <input
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={HONEYPOT_STYLE}
+        {...step1.register('_honey')}
+      />
+
       <div className="form-row">
         <input
           type="email"
@@ -161,6 +217,9 @@ export function WaitlistForm({ city }: WaitlistFormProps) {
       {emailError && (
         <p className="form-error" role="alert">{emailError.message}</p>
       )}
+      {apiError && (
+        <p className="form-error" role="alert">{apiError}</p>
+      )}
 
       <div className="form-chip-row">
         <span className="form-chip">
@@ -173,6 +232,11 @@ export function WaitlistForm({ city }: WaitlistFormProps) {
         </span>
         <span className="form-microcopy">Zero spamu, ever.</span>
       </div>
+
+      <p className="form-consent-text">
+        Klikając „Dołącz" zgadzasz się na kontakt mailowy w sprawie launch&apos;a RacketMatch. Szczegóły:{' '}
+        <a href="/privacy" target="_blank" rel="noopener">polityka prywatności</a>.
+      </p>
     </form>
   );
 }
