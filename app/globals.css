@@ -689,6 +689,9 @@ button { font-family: inherit; }
 
 .form-opt {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 44px;
   border-radius: var(--r-pill);
   background: rgba(255, 255, 255, 0.04);
