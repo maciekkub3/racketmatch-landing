@@ -8,7 +8,6 @@ import { ProductHub } from '@/components/ProductHub';
 import { Founder } from '@/components/Founder';
 import { FAQ } from '@/components/FAQ';
 import { Footer } from '@/components/Footer';
-import { StickyCta } from '@/components/StickyCta';
 
 export const dynamicParams = false;
 
@@ -75,8 +74,6 @@ export default async function CityPage({
       </main>
 
       <Footer />
-
-      <StickyCta />
     </>
   );
 }
