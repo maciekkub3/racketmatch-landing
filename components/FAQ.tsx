@@ -39,6 +39,12 @@ function getFaqs(city?: City): { num: string; cat: string; q: string; a: string 
     },
     {
       num: '05',
+      cat: 'Niezawodność',
+      q: 'Co jeśli partner odwoła w ostatniej chwili?',
+      a: 'Każdy match wymaga potwierdzenia w określonym czasie. Brak potwierdzenia → automatyczny re-match z kimś innym z Twojego poziomu. Aplikacja śledzi też reputację — ghost’ujesz raz, idziesz niżej w kolejce matchu.',
+    },
+    {
+      num: '06',
       cat: 'Korzyści',
       q: 'Co dostaję za zapis?',
       a: '3 miesiące za darmo + wcześniejszy dostęp przed publicznym launchem. Jeśli chcesz pomagać budować społeczność, nie tylko grać — napisz do nas (info wyżej, w sekcji Daniel + Maciek).',
