@@ -13,7 +13,7 @@ export function BeginnerReframe() {
           <div className="manifesto-divider" aria-hidden="true" />
 
           <p className="manifesto-sub">
-            Nikt nie zaczyna jako mistrz. Tenis i padel każdy zaczyna od zera. Dobieramy Cię do kogoś takiego samego — też pierwszy raz, też w Szczecinie, bez wstydu i bez „idź najpierw na lekcje".
+            Dobieramy Cię do drugiej osoby, która też dziś trzyma rakietę pierwszy raz. Bez wstydu, bez „idź najpierw na lekcje".
           </p>
         </div>
       </div>

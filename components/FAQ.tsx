@@ -39,12 +39,6 @@ function getFaqs(city?: City): { num: string; cat: string; q: string; a: string 
     },
     {
       num: '05',
-      cat: 'Sport',
-      q: 'Mam tylko padel albo tylko tenis — OK?',
-      a: 'Jasne. Wybierasz jeden sport przy zapisie. Drugi możesz dodać w apce w każdej chwili.',
-    },
-    {
-      num: '06',
       cat: 'Korzyści',
       q: 'Co dostaję za zapis?',
       a: '3 miesiące za darmo + wcześniejszy dostęp przed publicznym launchem. Jeśli chcesz pomagać budować społeczność, nie tylko grać — napisz do nas (info wyżej, w sekcji Daniel + Maciek).',

@@ -19,9 +19,9 @@ export const cities: City[] = [
     name: 'Szczecin',
     locative: 'w Szczecinie',
     status: 'primary',
-    venueExample: 'Pogoń · Kort 3',
-    venueDesc: 'Pogoń, Arkonia, Kort Centralny — dostępność i rezerwacja w jednym flow.',
-    venueMeta: '12 obiektów · Szczecin',
+    venueExample: 'Twój klub · Kort 3',
+    venueDesc: 'Korty tenisowe i padlowe w Szczecinie — dostępność i rezerwacja w jednym flow.',
+    venueMeta: 'Tenis + padel',
   },
   {
     slug: 'warszawa',
